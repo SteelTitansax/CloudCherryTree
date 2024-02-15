@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  <div class="row">
+    <div class="col-md-5">
+      {% with messages = get_flashed_messages()  %}
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <div class="card card-body">
+        <form action="{{url_for('add_developer')}}" method="POST">
+          <div class="form-group">
+            <input type="text" class="form-control" name="Nombre" placeholder="Name">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="Area" placeholder="Area">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="Rango" placeholder="Rango">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="idDocumento" placeholder="idDocumento">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="idSala" placeholder="IdSala">
+          </div>
+          <button class="btn btn-primary btn-block">
+            Save 
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-7">
+        <table class="table table-striped table-hover table-bordered table-sm bg-white">
+          <thead>
+            <tr>
+              <td>IDeveloper</td>
+              <td>Name</td>
+              <td>Area</td>
+              <td>Range</td>
+              <td>IdDocument</td>
+              <td>IdSala</td>
+            </tr>
+          </thead>
+          <tbody>
+            {% for developer in desarrollador %}
+            <tr>
+              <td>{{developer.0}}</td>
+              <td>{{developer.1}}</td>
+              <td>{{developer.2}}</td>
+              <td>{{developer.3}}</td>
+              <td>{{developer.4}}</td>
+              <td>{{developer.5}}</td>
+
+              <td>
+                <a href="/edit_developer/{{developer.0}}" class="btn btn-secondary">edit</a>
+                <a href="/delete_developer/{{developer.0}}" class="btn btn-danger btn-delete">delete</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  {% endblock %}

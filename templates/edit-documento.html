@@ -1,0 +1,29 @@
+27 lines (25 sloc)  852 Bytes
+  
+{% extends "layout.html" %}
+{% block body %}
+
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="card card-body">
+        <form action="/update_documento/{{documento.0}}" method="POST">
+          <div class="form-group">
+            <input type="text" class="form-control" value="{{documento.1}}" name="Nombre" placeholder="Nombre">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" value="{{documento.2}}" name="Tipo" placeholder="Tipo">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" value="{{documento.3}}" name="Tag" placeholder="Tag">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

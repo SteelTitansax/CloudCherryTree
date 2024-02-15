@@ -1,0 +1,33 @@
+27 lines (25 sloc)  852 Bytes
+  
+{% extends "layout.html" %}
+{% block body %}
+
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="card card-body">
+        <form action="/update_projectmanager/{{projectmanager.0}}" method="POST">
+          <div class="form-group">
+            <input type="text" class="form-control" value="{{projectmanager.1}}" name="Tipo" placeholder="Tipo">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" value="{{projectmanager.2}}" name="Area" placeholder="Area">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" value="{{projectmanager.3}}" name="Rango" placeholder="Rango">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" value="{{projectmanager.4}}" name="idDesarrollador" placeholder="idDesarrollador">
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
