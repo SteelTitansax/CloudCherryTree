@@ -1,14 +1,15 @@
-27 lines (25 sloc)  852 Bytes
-  
 {% extends "layout.html" %}
 {% block body %}
 
-  <div class="row">
+  <div class="row mt-2 ">
     <div class="col-md-4 offset-md-4">
       <div class="card card-body">
-        <form action="/update_repositorio/{{repositorio.0}}" method="POST">
+        <form action="/update/{{post.0}}" method="POST">
           <div class="form-group">
-            <input type="text" class="form-control" value="{{repositorio.1}}" name="Nombre" placeholder="Nombre">
+            <input type="text" name="technology" value="{{post.1}}" class="form-control">
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" name="post"  id="post" row="7">{{post.2}}</textarea>
           </div>
           <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">

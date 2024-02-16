@@ -1,10 +1,50 @@
 {% extends "layout.html" %}
+
 {% block body %}
 
+    <div class="row">
+          <div class="col-sm-3 mt-2">
+              <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <td scope="col" class="col-12"><strong>Technology</strong></td>
 
-      <h2 class="text-center"> Please select an option in the navigation bar</h2>
+                </tr>
+              </thead>
+              <tbody>
+                {% for technology in technologies %}
+                {% set cleaned_technology = technology[0].replace("('", "").replace("',)", "") %}
+                <tr>
+                  <td scope="col" class="col-3"> <a href="/filter/{{cleaned_technology}}">{{cleaned_technology}}</a> </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
 
-    
+          </div>
 
-  
-  {% endblock %}
+          <div class="col-sm-9 mt-2">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <td scope="col" class="col-9"><strong>Posts</strong></td>
+                  <td scope="col" class="col-3"><strong>Actions</strong></td>
+                </tr>
+              </thead>
+              <tbody>
+                {% for post in posts %}
+                <tr>
+                  <td scope="col" class="col-3">{{post.2}}</td>
+                  <td scope="col" class="col-3">
+                    <a href="/add/{{post.0}}" class="ml-3 btn btn-primary">create</a>
+                    <a href="/edit/{{post.0}}" class="ml-3 btn btn-warning">update</a>
+                    <a href="/delete/{{post.0}}" class="ml-3 btn btn-danger btn-delete">delete</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+{% endblock %}
