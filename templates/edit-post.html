@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block body %}
+
+  <div class="row mt-2 ">
+    <div class="col-md-4 offset-md-4">
+      <div class="card card-body">
+        <form action="/update/{{post.0}}" method="POST">
+          <div class="form-group">
+            <input type="text" name="technology" value="{{post.2}}" class="form-control">
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" name="post"  id="post" row="7">{{post.1}}</textarea>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

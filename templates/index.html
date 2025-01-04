@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="row">
+  <!-- Technology Filter -->
+  <div class="col-sm-3 mt-2">
+    <form method="get" action="/filter">
+        <div class="row">
+          <div class="col-8">
+            <div class="form-group ml-3">
+              <label for="technologyFilter"><strong>Filtrar por Tecnología</strong></label>
+              <select class="form-control" id="technologyFilter" name="technology">
+                <option value="">Seleccionar Tecnología</option>
+                {% for technology in technologies %}
+                {% set cleaned_technology = technology[0].replace("('", "").replace("',)", "") %}
+                <option value="{{ cleaned_technology }}">{{ cleaned_technology }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="col-4">
+            <button type="submit" class="btn btn-success mt-4 w-100">Filtrar</button>
+          </div>
+        </div>
+    </form>
+    <br/><br/>
+    <hr Style="margin-top:22px;">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td scope="col" class="col-12"><strong>Tecnología</strong></td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for technology in technologies %}
+        {% set cleaned_technology = technology[0].replace("('", "").replace("',)", "") %}
+        <tr>
+          <td scope="col" class="col-3">
+            <a href="/filter/{{ cleaned_technology }}">{{ cleaned_technology }}</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Post Filter -->
+  <div class="col-sm-9 mt-2">
+    <form method="get" action="/filter">
+        <div class="row">
+          <div class="col-9">
+            <div class="form-group">
+              <label for="postFilter"><strong>Filtrar por Post</strong></label>
+              <input type="text" class="form-control w-100" id="postFilter" name="post" placeholder="Buscar posts">
+            </div>
+          </div>
+          <div class="col-2">
+            <button type="submit" class="btn btn-success mt-4 w-100">Filtrar</button>
+          </div>  
+          <div class="col-1"></div>
+        </div>      
+    </form>
+    <div class="row">
+      <div class="col-9"></div>
+      <div class="col-2">
+        <a href="/add/1" class="btn btn-primary w-100">Crear</a>
+      </div>
+    </div>
+    <hr>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td scope="col" class="col-9"><strong>Posts</strong></td>
+          <td scope="col" class="col-3"><strong>Acciones</strong></td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for post in posts %}
+        <tr>
+          <td scope="col" class="col-3">{{ post.1 }}</td>
+          <td scope="col" class="col-3">
+            <div class="row">
+              <div class="col-6">
+                <a href="/edit/{{ post.0 }}" class="btn btn-warning w-100">Actualizar</a>
+              </div>
+              <div class="col-6">
+                <a href="/delete/{{ post.0 }}" class="btn btn-danger btn-delete w-100">Eliminar</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}
